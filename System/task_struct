@@ -37,6 +37,7 @@ struct task_struct {
 
         //mm_struct结构体，描述了进程内存的相关情况
          struct mm_struct *mm, *active_mm;
+         
 
          /* per-thread vma caching */
          u32 vmacache_seqnum;
