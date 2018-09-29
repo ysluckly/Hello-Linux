@@ -3,7 +3,7 @@
 //下面来剖析一下进程中保存的主要的信息有哪些？
 
 【浅析task_struct】
-struct task_struct {
+typedef struct task_struct {
 
         //进程的运行时状态
         volatile long state;    /* -1 unrunnable, 0 runnable, >0 stopped */
