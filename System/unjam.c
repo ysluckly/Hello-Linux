@@ -12,8 +12,7 @@
 
 int main()
 {
-    pid_t pid;
-    pid = fork();
+    pid_t pid=fork();
     if(pid<0)
     {
         perror("fork faild");
@@ -21,7 +20,8 @@ int main()
     }
     else if( pid == 0)//child
     {
-        printf("i am runing process%d\n",getpid());
+
+        printf("i am runing process %d\n",getpid());
         sleep(5);
         exit(1);
     }
@@ -34,7 +34,7 @@ int main()
             ret = waitpid(-1,&status,WNOHANG);//unjam wait 
             if(ret == 0)
             {
-                printf("child if runing\n");
+                printf("the child if runing\n");
             }
 
             sleep(1);
@@ -50,9 +50,9 @@ int main()
         }
         else
         {
-            printf("wait child faild return \n");
+            printf("child faild return \n");
             return 1;
         }
     }
-    return ;
+    return 0;
 }
