@@ -40,7 +40,7 @@ int main()
         }
         else
         {
-            printf("wait faild ");
+            printf(" is wait faild ");
             return 1;
         }
     }
