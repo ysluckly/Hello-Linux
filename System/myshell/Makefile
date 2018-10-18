@@ -1,5 +1,5 @@
 myshell:myshell.c
-	gcc $^ -o $@
+	gcc -c myshell.c -o myshell
 .PHONY:clean
 clean:
-	-rm $@
+	rm myshell
