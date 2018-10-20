@@ -7,4 +7,4 @@ server:server.c
 	gcc -c $^ -o $@
 .PHONY:clean
 clean:
-	rm -rf client server ser cli mypipe
+	rm -rf client server mypipe
