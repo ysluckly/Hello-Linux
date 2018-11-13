@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <signal.h>
+#include <unistd.h>
+void myhandler(int sig)
+{
+}
+int mysleep(int seconds)
+{
+	struct sigaction act,oldact;
+	sigset_t newmask,oldmask;//设置信号集
+	act.sa_handler = myhandler;
+	sigemptyset(&act.sa_mask);//初始化信号集
+	act.sa_flags = 0;//一般设置为0
+	sigaction(SIGALRM,&act,&oldact);//注册信号处理函数
+	sigemptyset(&newmask);//初始化信号集
+	sigaddset(&newmask,SIGALRM);//为信号添加SIGALRM信号
+	alarm(seconds);//设置闹钟
+	sigdelset(&oldmask,SIGALRM);//从信号集oldmask中删除SIGALRM信号
+	sigsuspend(&oldmask);//替换pause
+	int ret = alarm(0);//取消闹钟
+	sigaction(SIGALRM,&oldact,NULL);//恢复默认信号处理动作
+	return ret;
+}
+int main()
+{
+	while(1)
+	{
+	        mysleep(3);
+		printf("sleeping...\n");
+	}
+	return 0;
+}
