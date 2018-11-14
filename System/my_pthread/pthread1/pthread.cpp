@@ -7,9 +7,10 @@ void* pthread_hander(void* arg)
 {
 
     const char* pthread_name =(char*)arg;
-    sleep(3);
+
+    sleep(1);
     cout<<pthread_name<<endl;
-    return (void*)"Hunter";
+    return (void*)333;
 }
 
 int main()
@@ -19,12 +20,14 @@ int main()
 
     while(1)
     {
+
+     
         cout<<"i am main pthread"<<getpid()<<endl;
-        sleep(1);
-    }
+        sleep(2);
+       }
 
     void* ret;
-    int i = pthread_join(tid,&ret);
+    pthread_join(tid,&ret);
     cout<<*(char*)ret<<endl;
 
 
