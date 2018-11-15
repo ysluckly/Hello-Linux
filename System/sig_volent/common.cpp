@@ -39,5 +39,28 @@ int GetSem(int num)
 {
   return commonSem(num,IPC_CREAT);
 }
-int P(int semid,int who);
-int V(int semid,int who);
+
+
+static int commonPV(int semid,int who,int op)
+{
+  struct sembuf _sf;
+  _sf.sem_num = who;
+  _sf.sem_op= op;
+  _sf.sem_flg = 0;
+  if(semop(semid,&_sf,1)<0)
+  {
+    cout<<"semop id error"<<endl;
+    return -1;
+  }
+  return 0;
+
+}
+int P(int semid,int who)
+{
+  return commonPV(semid,who,-1);
+
+}
+int V(int semid,int who)
+{
+  return commonPV(semid ,who,1);
+}

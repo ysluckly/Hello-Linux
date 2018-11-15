@@ -1,5 +1,6 @@
-sig:sig.cpp common.cpp
-	g++ -o $@　$^
+.PHONY:sig 
+sig:common.cpp sig.cpp
+	g++ -o $@ $^
 .PHONY:clean
 clean:
 	rm -f sig

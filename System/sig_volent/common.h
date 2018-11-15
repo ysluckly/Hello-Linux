@@ -6,13 +6,14 @@
 #include <sys/ipc.h>
 #include <sys/sem.h>
 #include <unistd.h>
-
+#include <stdio.h>
+#include <sys/wait.h>
 using namespace std;
 
 #define PATHNAME "HUTER"
 #define PROJ_ID 8998
 
-union senun
+union semun
 {
   int val;
   struct semid_ds *buf;
