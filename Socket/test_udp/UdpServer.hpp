@@ -29,12 +29,11 @@ public:
     }
   }
 
-  //绑定
   void Bind()
   {
     struct sockaddr_in _local;
     _local.sin_family = AF_INET;
-    _local.sin_port  = port;
+    _local.sin_port  = htons(port);
     _local.sin_addr.s_addr = inet_addr(ip.c_str());
     if(bind(sock,(struct sockaddr*)&_local,sizeof(_local))<0)
     {
