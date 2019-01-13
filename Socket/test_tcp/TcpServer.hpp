@@ -4,6 +4,7 @@
 #include <string>
 #include <cstring>
 #include <strings.h>
+#include <signal.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <stdlib.h>
@@ -11,9 +12,15 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <unistd.h>
+#include <pthread.h>
 
 using namespace std;
 
+struct data_t{
+
+  int sp;
+  int sock;
+}data_t;
 class Sock{
 
   private:
@@ -41,6 +48,11 @@ class Sock{
     bzero(&addr,sizeof(addr));
     addr.sin_family = AF_INET;
     addr.sin_port=htons(port);
+   
+
+
+    //服务器端ip可为0,一个服务器可能两个网卡，即2ip，如果有多个ip，可以设置一个宏，即服务器可接收发送到本机任意ip的数据，客户端不可以省略
+    //addr.sin_addr.s_addr = htonl(INADDR_ANY);
     addr.sin_addr.s_addr= inet_addr(ip.c_str());
     
     if(bind(listensock,(struct sockaddr*)&addr,sizeof(addr))<0)
@@ -81,8 +93,6 @@ class Sock{
   }
 };
 
-
-
 class Server
 {
   private:
@@ -94,6 +104,7 @@ class Server
   }
     void InitServer()
     {
+      signal(SIGCHLD,SIG_IGN);//忽略
       sock.Socket();
       sock.Bind();
       sock.Listen();
@@ -129,6 +140,7 @@ class Server
       }
       close(sock);
     }
+    
     void Run()
     {
       for(;;)
@@ -139,7 +151,21 @@ class Server
           continue;
         }
         cout<<"Get a New Link "<<endl;;
-        Service(new_sock);
+        /////////////////////////////改进
+        //多进程版本，消耗大，无意义
+      
+        pid_t id = fork();
+        if(id == 0)//child
+        {
+          Service(new_sock);
+          exit(2);
+        }
+        close(new_sock);
+        
+       /////////////////////////////
+
+        
+        
       }
     }
 
