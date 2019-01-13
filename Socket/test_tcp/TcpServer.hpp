@@ -16,9 +16,9 @@
 
 using namespace std;
 
-struct data_t{
+typedef struct data_t{
 
-  int sp;
+  Server *sp;
   int sock;
 }data_t;
 class Sock{
@@ -140,7 +140,18 @@ class Server
       }
       close(sock);
     }
-    
+    static void ThreadRun(void* arg)
+    {
+      pthread_detach(pthread_self());
+
+      data_t *d = (data_t*)arg;
+      Server *sp=d->sp;
+      int sock = d->sock;
+      delete d;
+      sp->Service(sock);
+
+    }
+
     void Run()
     {
       for(;;)
@@ -154,12 +165,21 @@ class Server
         /////////////////////////////改进
         //多进程版本，消耗大，无意义
       
-        pid_t id = fork();
+       /* pid_t id = fork();
         if(id == 0)//child
         {
           Service(new_sock);
           exit(2);
-        }
+        }*/
+
+        ////////////////////升级
+        ///////多线程
+        pthread_t tid;
+        data_t *d = new data_t;
+        d->sp = this;
+        d->sock = new_sock;
+
+        phread_create(,&tid,NULL,ThreadRun,(void*)d);
         close(new_sock);
         
        /////////////////////////////
