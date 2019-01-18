@@ -1,8 +1,12 @@
-#!usr/bin/python
+#!/usr/bin/python
 #coding:utf-8
 #from __future__ import division   #除法方法
 print "hello python"  #输出hello
 
+#第一种执行：python+文件
+#第二种执行：
+#chmod +x 文件名
+#./文件名
 
 #python是动态强类型
 #解释时检查类型，不支持隐士类型转换
