@@ -1,5 +1,9 @@
 #!/usr/bin/python
 #coding:utf-8
+'''
+python 概述
+'''
+
 #from __future__ import division   #除法方法
 print "hello python"  #输出hello
 
