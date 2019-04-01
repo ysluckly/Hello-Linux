@@ -61,7 +61,7 @@
 #  let i++
 #done < file 
 
-#从文化中拿数据
+#从FILE中拿数据
 
 #i=0
 #cat file | while read line 
