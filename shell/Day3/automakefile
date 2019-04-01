@@ -1,0 +1,13 @@
+#!/bin/bash
+
+cc=g++
+bin=test
+src=$(ls *.c)
+
+cat  << EOF > Makefile
+$bin:$src 
+  $cc -o $bin $<
+.PHONY:clean 
+clean:
+  rm -f $bin
+EOF
