@@ -24,9 +24,6 @@ python MAIN.py
 
 或者，可以通过Anaconda自带的Spyder打开MAIN.py后运行。
 
-## 声明
-
-该代码均为Liang Hanpu所写，提供给诸位用来参考学习，不可将其复制粘贴后用于商用。
 
 
 
