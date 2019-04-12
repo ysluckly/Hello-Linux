@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Tue Aug  8 20:02:37 2017
 
-@author: vento
-"""
+'''
+
+Title: 手写数字识别
+Date ：2019.4.8
+Autor：YS （1640701****）
+School：XUST 
+个人博客与GitHub名称：Mr-Hunter 
+''' 
 
 import os
 from skimage import io
