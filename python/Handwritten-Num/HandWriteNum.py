@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+<<<<<<< HEAD
 
 '''
 
@@ -7,6 +8,15 @@ Date ：2019.4.8
 Autor：YS （1640701****）
 School：XUST 
 个人博客与GitHub名称：Mr-Hunter 
+=======
+'''
+
+Title: 手写数字识别
+Date ：2019.4.8
+Autor：YS （1640701****） 
+个人博客与GitHub名称：Mr-Hunter 
+项目源码：https://github.com/Mr-Hunter/Linux/tree/master/python/Handwritten-Num
+>>>>>>> ec0cd06325010017cfe49d3c702afed2cc34f47d
 ''' 
 
 import os
